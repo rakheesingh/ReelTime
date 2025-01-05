@@ -7,6 +7,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@tanstack/react-query": "^5.62.15",
+    "classnames": "^2.5.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
@@ -21,6 +23,7 @@
     "autoprefixer": "^10.4.20",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^7.1.2",
+    "dotenv-webpack": "^8.1.0",
     "html-webpack-plugin": "^5.6.3",
     "postcss": "^8.4.49",
     "postcss-loader": "^8.1.1",

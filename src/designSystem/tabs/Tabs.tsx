@@ -1,5 +1,4 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
-import {MOVIE_TABS } from "../../utils/constants/constant";
 
 // Define the type of the context value
 interface TabsContextType {
@@ -20,10 +19,15 @@ export const useTabs = () => {
 
 interface TabProps {
   children: ReactNode;
+  defaultTab: string;
 }
 
-export const TabContext = ({ children }: TabProps) => {
-  const [activeTab, setActiveTab] = useState<string>(MOVIE_TABS.ALL);
+interface TablistProps {
+  children: ReactNode;
+}
+
+export const TabContext = ({ children, defaultTab }: TabProps) => {
+  const [activeTab, setActiveTab] = useState<string>(defaultTab);
   const switchTab = (tab: string) => {
     setActiveTab(tab);
   };
@@ -51,11 +55,11 @@ const Tabs = ({ tabs }: TabsListProps) => {
   );
 };
 
-const TabList = ({ children }: TabProps) => {
+const TabList = ({ children }: TablistProps) => {
   return <div className="flex gap-6">{children}</div>;
 };
 
-const Tab = ({ children }: TabProps) => {
+const Tab = ({ children }: TablistProps) => {
   const { activeTab, switchTab } = useTabs();
 
   return (

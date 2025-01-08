@@ -1,8 +1,10 @@
-export const getMovieListFilter = (apiEndpoint: string) => {
+const API_BASE = "https://api.themoviedb.org/3";
+
+export const getMovieListFilter = (apiEndpoint: string, dynamicQuery:string) => {
   return async ({ pageParam = 1 }) => {
-    console.log(pageParam, apiEndpoint);
+    console.log(`${API_BASE}/${apiEndpoint}?${dynamicQuery}&page=${pageParam}`, apiEndpoint);
     const response = await fetch(
-      `https://api.themoviedb.org/3/${apiEndpoint}?language=en-US&page=${pageParam}`,
+      `${API_BASE}/${apiEndpoint}?${dynamicQuery}&page=${pageParam}`,
       {
         method: "GET",
         headers: {
@@ -13,7 +15,6 @@ export const getMovieListFilter = (apiEndpoint: string) => {
     );
 
     const data = await response.json();
-    console.log("response", data);
 
     // Simulating nextPage logic; adjust based on actual API structure
     return {

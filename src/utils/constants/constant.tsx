@@ -10,6 +10,8 @@ interface MovieTabDetails {
     Upcoming: { id: "1", tabName: "Upcoming", apiName: "movie/upcoming" },
     Popular: { id: "2", tabName: "Popular", apiName: "movie/popular" },
     Top_Rated: { id: "3", tabName: "Top Rated", apiName: "movie/top_rated" },
+    All: { id: "4", tabName: "All", apiName: "discover/movie" },
+
   };
   
   // Define the type for the MOVIE_TAB object
@@ -17,6 +19,8 @@ interface MovieTabDetails {
     UPCOMING: "Upcoming",
     POPULAR: "Popular",
     TOP_RATED: "Top_Rated",
+    ALL: "All",
+
   } as const;
   
   // Optional: If you want to make sure MOVIE_TAB keys match the keys of MOVIE_TAB_DETAILS

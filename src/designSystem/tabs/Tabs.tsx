@@ -23,7 +23,7 @@ interface TabProps {
 }
 
 export const TabContext = ({ children }: TabProps) => {
-  const [activeTab, setActiveTab] = useState<string>(MOVIE_TABS.POPULAR);
+  const [activeTab, setActiveTab] = useState<string>(MOVIE_TABS.ALL);
   const switchTab = (tab: string) => {
     setActiveTab(tab);
   };

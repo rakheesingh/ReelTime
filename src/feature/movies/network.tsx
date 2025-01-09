@@ -14,6 +14,12 @@ export const getMovieListFilter = (apiEndpoint: string, dynamicQuery:string) => 
       }
     );
 
+
+  if (!response.ok) {
+    // Explicitly throw an error to handle HTTP errors
+    throw new Error(`HTTP error! Status: ${response.status}`);
+  }
+
     const data = await response.json();
 
     // Simulating nextPage logic; adjust based on actual API structure

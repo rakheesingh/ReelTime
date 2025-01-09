@@ -9,8 +9,6 @@
     "skipLibCheck": true,
     "jsx": "react",  
     "lib": ["es2019", "dom"]  
-
-
   },
   "include": ["src/**/*.ts", "tests/**/*.ts", "src/*.ts", "src/setupTests.tsx"],
   "exclude": ["node_modules"]

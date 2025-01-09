@@ -1,6 +1,4 @@
-import React, {
-  useContext,
-} from "react";
+import React, { useContext } from "react";
 import { movieFilterData } from "./constant";
 import ButtonCheckbox from "../../designSystem/checkbox/ButtonCheckbox";
 import Input from "../../designSystem/input/Input";
@@ -46,19 +44,18 @@ export default function Filter({ setAPIname }: FilterProps) {
         ...prevState,
         [component]: value,
       };
-  
+
       // Update the API query
       const apiQuery: string[] = [];
       for (let query in newApiArg) {
         apiQuery.push(`${query}=${newApiArg[query]}`);
       }
       setAPIname(apiQuery.join("&"));
-  
+
       // Return the updated state
       return newApiArg;
     });
   };
-  
 
   return (
     <div className="flex sm:flex-col p-4 gap-4 w-4/12">
@@ -67,7 +64,7 @@ export default function Filter({ setAPIname }: FilterProps) {
         console.log(value, value.type, "rakhee");
         if (Component) {
           return (
-            <div key={key}>
+            <div key={key} className="flex flex-col gap-2">
               <label>{key}</label>
               {Component({
                 ...value,
@@ -81,5 +78,3 @@ export default function Filter({ setAPIname }: FilterProps) {
     </div>
   );
 }
-
-

@@ -20,8 +20,8 @@ const mapFilter = {
     renderComponent: (props: any) => (
       <ProgressBar
         {...props}
-        minQuery={props.requestParam[0]}
-        maxQuery={props.requestParam[1]}
+        minQuery={props.requestParam[1]}
+        maxQuery={props.requestParam[0]}
       />
     ), // Replace with appropriate component
   },

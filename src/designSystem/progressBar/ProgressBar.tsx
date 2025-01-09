@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 interface ProgressBarProps {
   minValue: number;
@@ -8,59 +8,72 @@ interface ProgressBarProps {
   maxQuery: string;
 }
 
-export default function ProgressBar({ minValue, maxValue, handleSelection, minQuery, maxQuery}: ProgressBarProps) {
-
+export default function ProgressBar({
+  minValue,
+  maxValue,
+  handleSelection,
+  minQuery,
+  maxQuery,
+}: ProgressBarProps) {
   const progressRef = useRef<HTMLDivElement>(null);
   const [currentMinValue, setCurrentMinValue] = useState(minValue);
   const [currentMaxValue, setCurrentMaxValue] = useState(maxValue);
-  const [activeHandle, setActiveHandle] = useState<"min" | "max" | null>(null);
+  const activeHandle = useRef<"min" | "max" | null>(null);
+  const animationFrame = useRef<number | null>(null);
 
   const progressBarWidth = maxValue - minValue;
 
-  // Calculate percentages for both handles
   const minPercentage = ((currentMinValue - minValue) / progressBarWidth) * 100;
   const maxPercentage = ((currentMaxValue - minValue) / progressBarWidth) * 100;
 
   const handleMouseDown = (handle: "min" | "max") => {
-    setActiveHandle(handle);
-    const arg = handle === "min" ? minQuery : maxQuery;
-    let newValue: number;
-
-    const handleMouseMove = (moveEvent: MouseEvent) => {
-      if (progressRef.current) {
-        const progressBarRect = progressRef.current.getBoundingClientRect();
-        const newX = moveEvent.clientX - progressBarRect.left;
-        newValue = Math.max(
-          minValue,
-          Math.min(
-            maxValue,
-            ((newX / progressBarRect.width) * progressBarWidth) + minValue
-          )
-        );
-
-        if (handle === "min") {
-          if (newValue <= currentMaxValue) {
-            setCurrentMinValue(newValue);
-          }
-        } else if (handle === "max") {
-          if (newValue >= currentMinValue) {
-            setCurrentMaxValue(newValue);
-          }
-        }
-      }
-    };
-
-    const handleMouseUp = () => {
-      setActiveHandle(null);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-
-      // Notify parent with updated values
-      handleSelection(newValue, arg);
-    };
-
+    activeHandle.current = handle;
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
+  };
+
+  const handleMouseMove = (moveEvent: MouseEvent) => {
+    if (!progressRef.current) return;
+    const progressBarRect = progressRef.current.getBoundingClientRect();
+    const newX = moveEvent.clientX - progressBarRect.left;
+
+    const newValue = Math.floor(
+      Math.max(
+        minValue,
+        Math.min(
+          maxValue,
+          ((newX / progressBarRect.width) * progressBarWidth) + minValue
+        )
+      )
+    );
+
+    if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
+
+    animationFrame.current = requestAnimationFrame(() => {
+      if (activeHandle.current === "min" && newValue <= currentMaxValue) {
+        setCurrentMinValue(newValue);
+      } else if (activeHandle.current === "max" && newValue >= currentMinValue) {
+        setCurrentMaxValue(newValue);
+      }
+    });
+  };
+
+  const handleMouseUp = () => {
+    if (activeHandle.current) {
+      const finalValue =
+        activeHandle.current === "min" ? currentMinValue : currentMaxValue;
+      const query = activeHandle.current === "min" ? minQuery : maxQuery;
+      handleSelection(finalValue, query);
+    }
+
+    activeHandle.current = null;
+    document.removeEventListener("mousemove", handleMouseMove);
+    document.removeEventListener("mouseup", handleMouseUp);
+
+    if (animationFrame.current) {
+      cancelAnimationFrame(animationFrame.current);
+      animationFrame.current = null;
+    }
   };
 
   return (

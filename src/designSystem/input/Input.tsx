@@ -1,6 +1,6 @@
 import React from "react";
 
-interface InputProps {
+export interface InputProps {
   value: string;
   handleSelection: Function;
   requestParam:string

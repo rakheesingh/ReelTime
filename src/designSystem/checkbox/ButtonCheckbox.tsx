@@ -5,7 +5,6 @@ import classNames from "classnames";
 interface ButtonCheckboxProps {
   checkBoxData: Record<string, string>; // Assuming checkBoxData maps keys to string values
   handleSelection: (selectedItems: string, type: string) => void; // Pass the updated selection to the parent
-  type: string;
   requestParam: string;
 }
 
@@ -32,6 +31,7 @@ export default function ButtonCheckbox({
       {Object.keys(checkBoxData).map((key) => (
         <Button
           key={key}
+          data-testid={key}
           variant="tertiary"
           className={classNames(
             `p-2 rounded-2xl text-sm text-white bg-red-600 cursor-pointer`,

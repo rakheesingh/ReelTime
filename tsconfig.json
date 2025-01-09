@@ -1,14 +1,13 @@
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "es6",
-      "strict": true,
-      "jsx": "react",
-      "moduleResolution": "node",
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src"]
-  }
-  
+  "compilerOptions": {
+    "types": ["@testing-library/jest-dom"],
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "src/*.ts", "src/setupTests.tsx"],
+  "exclude": ["node_modules"]
+}

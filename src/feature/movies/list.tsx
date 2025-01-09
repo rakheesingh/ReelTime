@@ -27,6 +27,13 @@ export default function List<T>({
       </Content>
     );
 
+  if (list.length === 0)
+    return (
+      <Content className="absolute top-[50%] left-[50%] font-bold text-red-900">
+        <>No data avialble for display</>
+      </Content>
+    );
+
   return (
     <div
       id="mainscroll"

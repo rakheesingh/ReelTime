@@ -34,7 +34,10 @@ export default function ButtonCheckbox({
           data-testid={key}
           variant="tertiary"
           className={classNames(
-            `p-2 rounded-2xl text-sm text-white bg-red-600 cursor-pointer`,
+            `p-2 rounded-2xl text-sm text-white cursor-pointer`,
+            {
+              "bg-red-600": !selectedCheck.includes(checkBoxData[key]),
+            },
             {
               "bg-green-800": selectedCheck.includes(checkBoxData[key]),
             }

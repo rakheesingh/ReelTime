@@ -49,7 +49,7 @@ export default function Button({
             variant === "secondary",
         },
         {
-          "bg-transparent text-gray-700 font-medium hover:text-brand-blue-1 active:text-brand-blue-3":
+          "text-gray-700 font-medium hover:text-brand-blue-1 active:text-brand-blue-3":
             variant === "tertiary",
         },
         className

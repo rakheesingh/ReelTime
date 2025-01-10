@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - gh-pages # Replace with your default branch if it's not 'main'
+  workflow_dispatch:  # This enables manual trigger
 
 jobs:
   build-and-deploy:
@@ -42,3 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           cname: '' # Optional: Add if you use a custom domain
+

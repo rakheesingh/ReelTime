@@ -7,9 +7,9 @@ module.exports = {
   mode: 'development', // Change to 'production' for production builds
   entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'build'), // Change 'dist' to 'build'
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/ReelTime/', // Replace 'ReelTime' with your actual repository name
   },
   devServer: {
     static: './dist',

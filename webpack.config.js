@@ -32,7 +32,9 @@ module.exports = {
     ],
   },
   plugins: [
-    new Dotenv(), // Add this line
+    new Dotenv({
+      systemvars: true,
+    }),
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',

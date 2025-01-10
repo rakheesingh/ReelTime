@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import MovieCard from "./MovieCard";
 import { MovieProp } from "./MovieInterface";
-import "@testing-library/jest-dom";
+
 
 describe("MovieCard Component", () => {
   const mockMovie: MovieProp = {

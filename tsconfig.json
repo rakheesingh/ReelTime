@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "types": ["node"],
+   "types": ["@testing-library/jest-dom", "node", "jest"],
     "module": "commonjs",
     "target": "es6",
     "outDir": "./dist",
@@ -10,6 +10,6 @@
     "jsx": "react",  
     "lib": ["es2019", "dom"]  
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "src/*.ts", "src/setupTests.tsx"],
+  "include": ["./src/**/**.*", "src/*.ts", "src/setupTests.tsx", "jest-dom.d.ts"],
   "exclude": ["node_modules"]
 }

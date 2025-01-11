@@ -10,6 +10,6 @@
     "jsx": "react",  
     "lib": ["es2019", "dom"]  
   },
-  "include": ["./src/**/**.*", "src/*.ts", "src/setupTests.tsx", "jest-dom.d.ts"],
+  "include": ["./src/**/**.*", "src/*.ts", "src/setupTests.tsx"],
   "exclude": ["node_modules"]
 }

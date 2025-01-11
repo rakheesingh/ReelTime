@@ -9,7 +9,7 @@ export default function MovieCard({
   overview,
 }: MovieProp) {
   return (
-    <div className="w-fit shadow-md rounded box-border overflow-hidden">
+    <div className="w-full shadow-md rounded box-border overflow-hidden">
       <div className="relative h-80 ">
         <MovieImage poster_path={poster_path} />
         <MovieRating vote_average={vote_average} />

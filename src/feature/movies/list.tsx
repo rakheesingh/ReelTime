@@ -38,11 +38,11 @@ export default function List<T>({
     <div
       id="mainscroll"
       ref={ref}
-      className="w-9/12 h-full flex justify-center items-center overflow-scroll"
+      className="h-full flex justify-center items-center overflow-scroll w-full"
     >
-      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-14 gap-y-12 py-6 w-[80%]">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-14 gap-y-12 p-8">
         {list?.map((item, index) => (
-          <div key={index}>
+          <div key={index} className="max-w-64">
             {renderElement(item)}{" "}
             {/* Pass each item to the renderElement function */}
           </div>

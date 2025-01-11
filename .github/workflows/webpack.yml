@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - gh-pages # Replace with your default branch if it's not 'main'
+  workflow_dispatch:  # This enables manual trigger
 
 jobs:
   build-and-deploy:
@@ -24,6 +25,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Debug environment variable
+        run: echo $REACT_APP_BEARER_TOKEN
+        env:
+         REACT_APP_BEARER_TOKEN: ${{ secrets.REACT_APP_BEARER_TOKEN }}
+
       # Step 4: Build the App
       - name: Build the app
         env:
@@ -37,3 +43,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
           cname: '' # Optional: Add if you use a custom domain
+
